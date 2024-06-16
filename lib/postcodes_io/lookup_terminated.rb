@@ -12,7 +12,7 @@ module Postcodes
 
     def lookup_terminated_postcode(postcode)
       postcode = remove_whitespace postcode
-      response = Excon.get("https://api.postcodes.io/terminated_postcodes/#{postcode}")
+      response = Excon.get("#{base_url}/terminated_postcodes/#{postcode}")
 
       unless response.status == 404
         parsed_response = JSON.parse(response.body)

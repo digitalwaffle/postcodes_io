@@ -7,6 +7,10 @@ require 'postcodes_io/lookup_terminated'
 
 module Postcodes
   class IO
+    def base_url
+      ENV['POSTCODES_IO_BASE_URL'] || "https://api.postcodes.io"
+    end
+
     include Lookup
     include Autocomplete
     include ReverseGeocode

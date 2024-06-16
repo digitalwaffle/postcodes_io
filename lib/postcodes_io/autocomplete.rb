@@ -13,7 +13,7 @@ module Postcodes
 
     def autocomplete_postcode(postcode)
       postcode = remove_whitespace postcode
-      response = Excon.get("https://api.postcodes.io/postcodes/#{postcode}/autocomplete")
+      response = Excon.get("#{base_url}/postcodes/#{postcode}/autocomplete")
 
       unless response.status == 404
         parsed_response = JSON.parse(response.body)

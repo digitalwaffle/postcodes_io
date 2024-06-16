@@ -20,7 +20,7 @@ module Postcodes
 
     def lookup_postcode(postcode)
       postcode = remove_whitespace postcode
-      response = Excon.get("https://api.postcodes.io/postcodes/#{postcode}")
+      response = Excon.get("#{base_url}/postcodes/#{postcode}")
 
       unless response.status == 404
         parsed_response = JSON.parse(response.body)
@@ -32,7 +32,7 @@ module Postcodes
     def lookup_multiple(postcodes)
       payload = {postcodes: postcodes.map {|p| remove_whitespace p}}
       response = Excon.post(
-        "https://api.postcodes.io/postcodes",
+        "#{base_url}/postcodes",
          body: payload.to_json,
          headers: {'Content-Type' => 'application/json'}
          )
